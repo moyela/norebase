@@ -1,0 +1,7 @@
+/* this stores the public tailwindcss utilities */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ----------------------------------------------- */

@@ -1,0 +1,7 @@
+I was initially going to bind my bluesky profile to moyela.com with this file. I did it another way though.
+
+This file binds my bluesky twitter profile to my personal URL, moyela.com
+
+Please do not delete it.
+
+Binding query: "did:plc:2rlowd2oe7angiwtvgilrstn"m
