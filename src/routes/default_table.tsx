@@ -4,11 +4,14 @@ export default function Home() {
     const [tokens, setTokens] = useState([])
     const [page, setPage] = useState(1)
     const [start, setStart] = useState(0)
-    const [fetchTime, setFetchTime] = useState("")
+    const [loading, setLoading] = useState(false)
+    const [fetchTime, setFetchTime] = useState()
+    const [favouriteTokens, setFavouriteTokens] = useState("")
+
     const BASE_URL = "https://api.coinlore.net/api/"
 
     // findStart uses the page number to calculate the start value for the API call
-    const findStart = (page) => {
+    const findStart = (page: number) => {
       if (page === 1) {
         setStart(0)
       } else if (page > 1) {
@@ -21,52 +24,70 @@ export default function Home() {
     const previousPage = () => {if (page > 1) {setPage(page - 1)} }
 
     useEffect(() => {
-
       const fetchTokens = async () => {
+        setLoading(true)
         const response = await fetch(`${BASE_URL}/tickers/?start=${start}&limit=10`);
         const tokenData = await response.json();
         setTokens(tokenData.data);
+        setLoading(false)
+        let date = new Date();
+        setFetchTime(`${date.toLocaleTimeString()} | ${date.toLocaleDateString()}`)
       }
       
       findStart(page)
       fetchTokens();
 
-    }, [page, start]);
+    }, [page]);
 
+    if (loading === true) {return <h1>Loading...</h1>}
+
+    const setTokenAsFavourite = (nameOfToken:any, idOfToken) => {
+      try {
+          window.localStorage.setItem(nameOfToken, JSON.stringify(idOfToken));
+      }
+      catch (error) {
+          console.error(error);
+      }
+    };
 
     return (
       <div className=' px-1 md:px-0 font-sans tracking-wide bg-green-100 flex flex-col '>
-        <div className="flex flex-row mb-3 font-semibold border-b-2 border-b-black">
-          <p className="basis-2/6">Name</p>
-          <p className="basis-1/6">Symbol</p>
-          <p className="basis-1/4">Price (USD)</p>
-          <p className="basis-3/6">Total Supply</p>
+        <div className="flex flex-row mb-3 font-semibold border-b-2 border-b-black font-mono">
+          <p className="basis-2/6">🪙Token</p>
+          <p className="basis-1/5">📶Symbol</p>
+          <p className="basis-1/4">💵Price </p>
+          <p className="basis-3/6">🔄️Total Supply</p>
+          <div>+❤️?</div>
         </div>
         
         <div>
-          {tokens.map((token, index) => {
-            return (
-              <ul>
-                <li key={index} className='border-black border rounded-md flex flex-col gap-2 bg-slate-100 p-1 mb-2'>
+          <ul>
+            {tokens.map((token) => {
+              return (
+
+                <li key={token.id} className='border-black border rounded-md flex flex-col gap-2 bg-slate-100 p-1 mb-2'>  
                   <div className="flex flex-row justify-between text-sm">
                     <p className="basis-2/6">{token.name}</p>
                     <p className="basis-1/6">{token.symbol}</p>
                     <p className="basis-1/4">${token.price_usd}</p>
                     <p className="basis-3/6">{token.tsupply} {token.symbol}</p>
-                    <button className="text-[#66b179] font-extrabold">✓</button>
+                    <button className="text-[#66b179] font-extrabold" onClick={setTokenAsFavourite(token.symbol, token.id)}>✓</button>
                   </div>
                 </li>
-              </ul>
-            )
-          })}      
+              )
+            })}   
+          </ul>
         </div>
 
-        <div className="flex flex-row justify-between">
-          <div className="">
-            <p className="text-sm">Page: {page}</p>
+        <div className="flex flex-row justify-between font-mono">
+          <div className="pt-1">
+            <p className="text-sm">Page: {page} of 1219</p>
+          </div>
+          <div className="pt-1 text-yellow-600">
+           <p className="text-sm">Last updated: {fetchTime}</p>
           </div>
           <div className="flex flex-row gap-7 text-sm nav-bar">
-            <button className="px-3 py-1 rounded-xl bg-[#66b179] text-white" onClick={() => previousPage()}>
+            <button className="px-3 py-1 rounded-xl bg-[#66b179] text-white" onClick={() => previousPage()} style={{ display: page === 1 ? 'none' : 'block' }}>
               PREVIOUS
             </button>
        
@@ -75,6 +96,9 @@ export default function Home() {
             </button>
           </div>
         </div>
+        <button className="mt-10 justify-around mx-auto px-3 py-1 rounded-xl bg-[#94b59c] text-white" onClick={window.location.href='https://www.moyela.com/'}>
+              BACK TO moyela.com
+        </button>
       </div>
     );
   }

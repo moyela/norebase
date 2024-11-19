@@ -29,7 +29,7 @@ export default function Header() {
             </div>
 
             <nav className="font-mono flex gap-10 justify-center mb-2" id="nav-bar">
-                <RouteLink name="TOKENS SORTED BY MAREKETCAP" route="/" />
+                <RouteLink name="ALL RANKED BY MAREKETCAP" route="/" />
                 <RouteLink name="MY FAVOURITES" route="/favourites" />
             </nav>
         </div>
