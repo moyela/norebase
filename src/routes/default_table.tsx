@@ -6,7 +6,7 @@ export default function Home() {
     const [start, setStart] = useState(0)
     const [loading, setLoading] = useState(false)
     const [fetchTime, setFetchTime] = useState()
-    const [favouriteTokens, setFavouriteTokens] = useState("")
+    // const [favouriteTokens, setFavouriteTokens] = useState("")
 
     const BASE_URL = "https://api.coinlore.net/api/"
 
@@ -41,14 +41,14 @@ export default function Home() {
 
     if (loading === true) {return <h1>Loading...</h1>}
 
-    const setTokenAsFavourite = (nameOfToken:any, idOfToken) => {
-      try {
-          window.localStorage.setItem(nameOfToken, JSON.stringify(idOfToken));
-      }
-      catch (error) {
-          console.error(error);
-      }
-    };
+    // const setTokenAsFavourite = (nameOfToken:any, idOfToken) => {
+    //   try {
+    //       window.localStorage.setItem(nameOfToken, JSON.stringify(idOfToken));
+    //   }
+    //   catch (error) {
+    //       console.error(error);
+    //   }
+    // };
 
     return (
       <div className=' px-1 md:px-0 font-sans tracking-wide bg-green-100 flex flex-col '>
@@ -57,7 +57,7 @@ export default function Home() {
           <p className="basis-1/5">📶Symbol</p>
           <p className="basis-1/4">💵Price </p>
           <p className="basis-3/6">🔄️Total Supply</p>
-          <div>+❤️?</div>
+          {/* <div>+❤️?</div> */}
         </div>
         
         <div>
@@ -71,7 +71,7 @@ export default function Home() {
                     <p className="basis-1/6">{token.symbol}</p>
                     <p className="basis-1/4">${token.price_usd}</p>
                     <p className="basis-3/6">{token.tsupply} {token.symbol}</p>
-                    <button className="text-[#66b179] font-extrabold" onClick={setTokenAsFavourite(token.symbol, token.id)}>✓</button>
+                    {/* <button className="text-[#66b179] font-extrabold" onClick={setTokenAsFavourite(token.symbol, token.id)}>✓</button> */}
                   </div>
                 </li>
               )
@@ -96,9 +96,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <button className="mt-10 justify-around mx-auto px-3 py-1 rounded-xl bg-[#94b59c] text-white" onClick={window.location.href='https://www.moyela.com/'}>
-              BACK TO moyela.com
-        </button>
+
       </div>
     );
   }

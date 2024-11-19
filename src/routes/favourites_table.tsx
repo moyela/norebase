@@ -1,3 +1,4 @@
+import { parse } from "postcss";
 import { useState, useEffect } from "react";
 
 export default function Best() {
@@ -18,10 +19,10 @@ export default function Best() {
         const value = localStorage.getItem(key);
         
         if (i === 0){
-          tokenIds += value  
+          tokenIds += parseInt(value, 10) 
         }
         else {
-          tokenIds += ',' + value
+          tokenIds += ',' + parseInt(value, 10)
         }
     
       }
@@ -33,6 +34,7 @@ export default function Best() {
       const fetchTokens = async () => {
         setLoading(true)
         let favouritesApiCall = getFavouriteTokensIds();
+        console.log(favouritesApiCall)
         const response = await fetch(`${BASE_URL}/ticker  /?id=${favouritesApiCall}`, {mode: 'no-cors'});
         const tokenData = await response.json();
         setTokens(tokenData.data);
