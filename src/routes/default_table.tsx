@@ -5,7 +5,7 @@ export default function Home() {
     const [page, setPage] = useState(1)
     const [start, setStart] = useState(0)
     const [loading, setLoading] = useState(false)
-    const [fetchTime, setFetchTime] = useState()
+    const [fetchTime, setFetchTime] = useState('')
     // const [favouriteTokens, setFavouriteTokens] = useState("")
 
     const BASE_URL = "https://api.coinlore.net/api/"
@@ -62,7 +62,7 @@ export default function Home() {
         
         <div>
           <ul>
-            {tokens.map((token) => {
+            {tokens.map((token:any) => {
               return (
 
                 <li key={token.id} className='border-black border rounded-md flex flex-col gap-2 bg-slate-100 p-1 mb-2'>  
