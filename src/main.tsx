@@ -14,7 +14,7 @@ export default function Root() {
         </div>
       </div>
 
-      <div className='bg-green-100 pb-5 min-h-96'>
+      <div className='bg-green-100 pb-5 mx  '>
         <div className="flex flex-col max-w-xl mx-auto pt-2">
           <AppRouter/>
         </div>

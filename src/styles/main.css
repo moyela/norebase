@@ -10,25 +10,9 @@
 
 /* Header Styling */
 
-.header-photo-circle {
-  border-radius: 50%;
-  border: 1px solid #ddd;
-  max-width: 100%;
-  height: 150px;
-}
-
-.header-external-link {
-  /* this styles the links in the navbar for external profiles*/
-  height: 25px;
-}
-
-.header-external-link:hover {
-  background-color: #92d4a2;
-}
-
 #nav-bar a.active {
   /* this styles the navigation routing links*/
-  background-color: #48a35e;
+  background-color: #66b179;
   color: white;
 } 
 
