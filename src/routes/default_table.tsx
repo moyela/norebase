@@ -85,7 +85,7 @@ export default function Home() {
               return (
                 <>
                   {/* // mobile-view -------------------------------------------------------------------------- */}
-                  <li key={`${token.id} mobile`} className='border-black border rounded-md flex sm:hidden  flex-col gap-2 bg-slate-100 hover:bg-slate-300 p-1 mb-2'>  
+                  <li key={token.id * 1001} className='border-black border rounded-md flex sm:hidden  flex-col gap-2 bg-slate-100 hover:bg-slate-300 p-1 mb-2'>  
                     <div className="flex flex-row justify-between text-sm">
                       <p className="hidden md:block basis-1/6">{token.rank}</p>
                       <div className="basis-1/2 flex flex-col gap-3">
@@ -115,7 +115,7 @@ export default function Home() {
 
 
                   {/* // web-view -------------------------------------------------------------------------- */}
-                  <li key={`${token.id} web`} className='border-black border rounded-md hidden sm:flex  flex-col gap-2 bg-slate-100 hover:bg-slate-300 p-1 mb-2'>  
+                  <li key={token.id * 3003} className='border-black border rounded-md hidden sm:flex  flex-col gap-2 bg-slate-100 hover:bg-slate-300 p-1 mb-2'>  
                     <div className="flex flex-row justify-between text-sm">
                       <p className="hidden sm:block basis-1/6">{token.rank}</p>
                       <div className="basis-2/6">
