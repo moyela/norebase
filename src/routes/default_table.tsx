@@ -10,34 +10,48 @@ export default function Home() {
 
     const BASE_URL = "https://api.coinlore.net/api/"
 
-    // findStart uses the page number to calculate the start value for the API call
-    const findStart = (page: number) => {
-      if (page === 1) {
-        setStart(0)
-      } else if (page > 1) {
-        setStart((page - 1) * 10)
-      }
-    }
-
     // nextPage and previousPage change the pages and adjust the api call
-    const nextPage = () => {setPage(page + 1)} 
-    const previousPage = () => {if (page > 1) {setPage(page - 1)} }
+    const nextPage = () => {
+      setPage(prevPage => {
+          const newPage = prevPage + 1;
+          setStart((newPage - 1) * 10);
+          return newPage;
+      });
+    };
 
+    const previousPage = () => {
+        setPage(prevPage => {
+            const newPage = prevPage - 1;
+            setStart((newPage - 1) * 10);
+            return newPage;
+        });
+    };
+    
     useEffect(() => {
+
       const fetchTokens = async () => {
-        setLoading(true)
-        const response = await fetch(`${BASE_URL}/tickers/?start=${start}&limit=10`);
-        const tokenData = await response.json();
-        setTokens(tokenData.data);
-        setLoading(false)
-        let date = new Date();
-        setFetchTime(`${date.toLocaleTimeString()} | ${date.toLocaleDateString()}`)
+        setLoading(true);
+        try {
+          const response = await fetch(`${BASE_URL}/tickers/?start=${start}&limit=10`);
+          const tokenData = await response.json();
+          setTokens(tokenData.data);
+        } 
+        catch (error) {
+          console.error('Error fetching tokens:', error);
+        } 
+        finally {
+          setLoading(false);
+        }
       }
       
-      findStart(page)
       fetchTokens();
+      let date = new Date();
+      setFetchTime(`${date.toLocaleTimeString()} | ${date.toLocaleDateString()}`)
+      
+      console.log(`loaded page ${page}`)
+      console.log(`listing coins from rank ${start + 1}`)
 
-    }, [page]);
+    }, [start,page]);
 
     if (loading === true) {return <h1>Loading...</h1>}
 
@@ -53,6 +67,7 @@ export default function Home() {
     return (
       <div className=' px-1 md:px-0 font-sans tracking-wide bg-green-100 flex flex-col '>
         <div className="flex flex-row mb-3 font-semibold border-b-2 border-b-black font-mono">
+          <p className="basis-1/6">#️⃣Rank</p>
           <p className="basis-2/6">🪙Token</p>
           <p className="basis-1/5">📶Symbol</p>
           <p className="basis-1/4">💵Price </p>
@@ -65,8 +80,9 @@ export default function Home() {
             {tokens.map((token:any) => {
               return (
 
-                <li key={token.id} className='border-black border rounded-md flex flex-col gap-2 bg-slate-100 p-1 mb-2'>  
+                <li key={token.id} className='border-black border rounded-md flex flex-col gap-2 bg-slate-100 hover:bg-slate-300 p-1 mb-2'>  
                   <div className="flex flex-row justify-between text-sm">
+                    <p className="basis-1/6">{token.rank}</p>
                     <p className="basis-2/6">{token.name}</p>
                     <p className="basis-1/6">{token.symbol}</p>
                     <p className="basis-1/4">${token.price_usd}</p>
@@ -81,22 +97,23 @@ export default function Home() {
 
         <div className="flex flex-row justify-between font-mono">
           <div className="pt-1">
+            
             <p className="text-sm">Page: {page} of 1219</p>
           </div>
           <div className="pt-1 text-yellow-600">
-           <p className="text-sm">Last updated: {fetchTime}</p>
+            
+            <p className="text-sm">Last updated: {fetchTime}</p>
           </div>
           <div className="flex flex-row gap-7 text-sm nav-bar">
-            <button className="px-3 py-1 rounded-xl bg-[#66b179] text-white" onClick={() => previousPage()} style={{ display: page === 1 ? 'none' : 'block' }}>
+            
+            <button className="px-3 py-1 hover:bg-black rounded-xl bg-[#66b179] text-white" onClick={() => previousPage()} style={{ display: page === 1 ? 'none' : 'block' }}>
               PREVIOUS
             </button>
-       
-            <button className="px-3 py-1 rounded-xl bg-[#66b179] text-white" onClick={() => nextPage()}>
+            <button className="px-3 py-1 hover:bg-black rounded-xl bg-[#66b179] text-white" onClick={() => nextPage()}>
               NEXT
             </button>
           </div>
         </div>
-
       </div>
     );
   }
