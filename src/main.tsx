@@ -7,15 +7,15 @@ import Header from './components/header.js';
 export default function Root() {
   
   return (
-    <div id='viewport' className="min-w-80">
+    <div id='viewport' className="min-w-80 bg-green-100">
       <div className='bg-slate-100'>
         <div className='md:max-w-xl mx-auto'>
           <Header/>
         </div>
       </div>
 
-      <div className='bg-green-100 pb-5 min-h-max '>
-        <div className="flex flex-col max-w-2xl mx-auto pt-2">
+      <div className=' pb-5 min-h-max '>
+        <div className="flex flex-col md:max-w-2xl md:min-w-xl mx-auto pt-2">
           <AppRouter/>
         </div>
       </div>

@@ -9,6 +9,7 @@ export default function Home() {
     // const [favouriteTokens, setFavouriteTokens] = useState("")
 
     const BASE_URL = "https://api.coinlore.net/api/"
+    const TOTAL_PAGES = 1219
 
     // nextPage and previousPage change the pages and adjust the api call
     const nextPage = () => {
@@ -95,21 +96,25 @@ export default function Home() {
           </ul>
         </div>
 
-        <div className="flex flex-row justify-between font-mono">
-          <div className="pt-1">
+        <div className="flex flex-row font-mono justify-between">
+          <div className="pt-1 basis-1/3">
             
-            <p className="text-sm">Page: {page} of 1219</p>
+            <p className="text-sm">{page} of {TOTAL_PAGES}</p>
           </div>
-          <div className="pt-1 text-yellow-600">
+          <div className="pt-1 basis-1/3 text-yellow-600">
             
             <p className="text-sm">Last updated: {fetchTime}</p>
           </div>
-          <div className="flex flex-row gap-7 text-sm nav-bar">
+          <div className="flex flex-row gap-7 basis-1/3 text-sm nav-bar">
             
-            <button className="px-3 py-1 hover:bg-black rounded-xl bg-[#66b179] text-white" onClick={() => previousPage()} style={{ display: page === 1 ? 'none' : 'block' }}>
+            <button className="px-3 py-1 hover:bg-black rounded-xl bg-[#66b179] text-white" onClick={() => previousPage()}
+               disabled={page === 1}
+            >
               PREVIOUS
             </button>
-            <button className="px-3 py-1 hover:bg-black rounded-xl bg-[#66b179] text-white" onClick={() => nextPage()}>
+            <button className="px-3 py-1 hover:bg-black rounded-xl bg-[#66b179] text-white" onClick={() => nextPage()}
+               disabled={page === TOTAL_PAGES}
+            >
               NEXT
             </button>
           </div>
