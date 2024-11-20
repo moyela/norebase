@@ -105,7 +105,7 @@ export default function Home() {
                           </div>  
                         <div>
                           <p className="font-bold">🔄️Total Supply</p>
-                          <p>{token.tsupply} {token.symbol}</p>
+                          <p>{token.tsupply} <span className="font-bold">{token.symbol}</span></p>
                         </div>
                       </div>
         
@@ -128,7 +128,7 @@ export default function Home() {
                         <p><span className="font-bold">$</span>{token.price_usd}</p>
                       </div>
                       <div className="basis-3/6">
-                        <p>{token.tsupply} {token.symbol}</p>
+                        <p>{token.tsupply} <span className="font-bold">{token.symbol}</span></p>
                       </div>
                       {/* <button className="text-[#66b179] font-extrabold" onClick={setTokenAsFavourite(token.symbol, token.id)}>✓</button> */}
                     </div>
