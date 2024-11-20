@@ -71,7 +71,7 @@ export default function Home() {
         <div className="sm:hidden font-bold flex flex-row justify-between pb-3 px-3">
           <div className="">
               
-              <p className="text-sm">{page} of {TOTAL_PAGES}</p>
+              <p className="text-sm">Page {page} of {TOTAL_PAGES}</p>
             </div>
           <div className=" text-red-600">
               
@@ -142,7 +142,7 @@ export default function Home() {
         <div className="flex flex-row font-mono justify-between">
           <div className="hidden sm:block pt-1 basis-1/3 font-bold">
             
-            <p className="text-sm">{page} of {TOTAL_PAGES}</p>
+            <p className="text-sm">Page {page} of {TOTAL_PAGES}</p>
           </div>
           <div className="hidden sm:block pt-1 basis-2/5 font-bold text-red-600">
             
