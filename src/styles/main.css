@@ -11,7 +11,6 @@
 /* Header Styling */
 
 #nav-bar a.active {
-  /* this styles the navigation routing links*/
   background-color: #66b179;
   color: white;
 } 
@@ -21,25 +20,3 @@
 }
 
 /* ---------------------------- */
-
-
-/* Mobile Styles  */
-@media only screen and (width < 401px) {
-  body {
- 
-  }
-}
-
-/* Tablet Styles */
-@media only screen and (401px <= width <= 960px) {
-  body {
-
-  }
-}
-
-/* Desktop Styles */
-@media only screen and (width > 960px) {
-  body {
-
-  }
-}

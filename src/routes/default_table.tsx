@@ -68,12 +68,12 @@ export default function Home() {
         </div>
 
         {/* paginator and fetch-time for mobile */}
-        <div className="sm:hidden flex flex-row justify-between pb-3 px-3">
+        <div className="sm:hidden font-bold flex flex-row justify-between pb-3 px-3">
           <div className="">
               
               <p className="text-sm">{page} of {TOTAL_PAGES}</p>
             </div>
-          <div className=" text-yellow-600">
+          <div className=" text-red-600">
               
               <p className="text-sm">Last updated: {fetchTime}</p>
           </div>
@@ -140,11 +140,11 @@ export default function Home() {
         </div>
         {/* footer of the table */}
         <div className="flex flex-row font-mono justify-between">
-          <div className="hidden sm:block pt-1 basis-1/3">
+          <div className="hidden sm:block pt-1 basis-1/3 font-bold">
             
             <p className="text-sm">{page} of {TOTAL_PAGES}</p>
           </div>
-          <div className="hidden sm:block pt-1 basis-2/5 text-yellow-600">
+          <div className="hidden sm:block pt-1 basis-2/5 font-bold text-red-600">
             
             <p className="text-sm">Last updated: {fetchTime}</p>
           </div>
