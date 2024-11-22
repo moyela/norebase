@@ -148,17 +148,17 @@ export default function Home() {
             
             <p className="text-sm">Last updated: {fetchTime}</p>
           </div>
-          <div className="flex flex-row gap-7 sm:basis-1/3 text-sm nav-bar">
+          <div className="flex flex-row gap-7 text-sm nav-bar">
             
             <button className="px-3 py-1 hover:bg-black rounded-xl bg-[#66b179] text-white" onClick={() => previousPage()}
                disabled={page === 1}
             >
-              PREVIOUS
+              ← PREV
             </button>
             <button className="px-3 py-1 hover:bg-black rounded-xl bg-[#66b179] text-white" onClick={() => nextPage()}
                disabled={page === TOTAL_PAGES}
             >
-              NEXT
+              NEXT →
             </button>
           </div>
         </div>
