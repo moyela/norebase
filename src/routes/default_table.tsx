@@ -64,7 +64,7 @@ export default function Home() {
 
     return (
       <div className=' px-1 md:px-0 font-sans tracking-wide bg-green-100 flex flex-col '>
-        <div className="hidden sm:flex flex-row mb-3 font-semibold border-b-2 border-b-black font-mono">
+        <div className="hidden sm:flex sm:mt-2 flex-row mb-3 font-semibold border-b-2 border-b-black font-mono">
           <p className="basis-1/6">#️⃣Rank</p>
           <p className="basis-2/6">🪙Token</p>
           <p className="basis-1/5">📶Symbol</p>
@@ -123,7 +123,7 @@ export default function Home() {
                   <li key={token.nameid + ' web'} className='border-black border rounded-md hidden sm:flex  flex-col gap-2 bg-slate-100 hover:bg-slate-300 p-1 mb-2'>  
                     <div className="flex flex-row justify-between text-sm">
                       <p className="hidden sm:block basis-1/6">{token.rank}</p>
-                      <div className="basis-2/6">
+                      <div className="basis-2/5">
                         <p >{token.name}</p>
                       </div>
                       <div  className="basis-1/6">
@@ -144,7 +144,7 @@ export default function Home() {
           </ul>
         </div>
         {/* footer of the table */}
-        <div className="flex flex-row font-mono justify-between">
+        <div className="flex flex-row font-mono justify-between sm:mt-2">
           <div className="hidden sm:block pt-1 basis-1/5 font-bold">
             
             <p className="text-sm">Page {page} of {TOTAL_PAGES}</p>
@@ -153,17 +153,17 @@ export default function Home() {
             
             <p className="text-sm mx-auto">Last updated: {fetchTime}</p>
           </div>
-          <div className="flex flex-row gap-7 text-sm nav-bar">
+          <div className="flex flex-row gap-2 text-sm nav-bar">
             
-            <button className="px-3 py-1 hover:bg-black rounded-xl bg-[#66b179] text-white" onClick={() => previousPage()}
+            <button className="px-3 py-1 hover:bg-black rounded-md bg-[#66b179] text-white" onClick={() => previousPage()}
                disabled={page === 1}
             >
-              ← PREV
+              ←
             </button>
-            <button className="px-3 py-1 hover:bg-black rounded-xl bg-[#66b179] text-white" onClick={() => nextPage()}
+            <button className="px-3 py-1 hover:bg-black rounded-md bg-[#66b179] text-white" onClick={() => nextPage()}
                disabled={page === TOTAL_PAGES}
             >
-              NEXT →
+              →
             </button>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import './styles/main.css'
-import AppRouter from './routes/_routes.js';
+import AppRouter from './routes/_routing.js';
 import Header from './components/header.js';
 import Footer from './components/footer.js';
 

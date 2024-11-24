@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function FavouriteTokens() {
+export default function LikedTokens() {
     const [tokens, setTokens] = useState([])
     const [loading, setLoading] = useState(false)
     const [fetchTime, setFetchTime] = useState('')

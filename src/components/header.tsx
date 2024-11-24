@@ -22,21 +22,21 @@ export default function Header() {
             <div className="flex flex-col md:flex-row-reverse justify-around pb-2 min-w-min">
                 
                 <div className="mx-auto">
-                    <p className="font-mono font-semibold text-2xl md:text-3xl">
+                    <p className="font-mono font-semibold text-2xl md:text-3xl sm:mt-2">
                         Crypto Token List
                     </p>
                 </div>
             </div>
 
-            <nav className="font-mono flex gap-10 justify-center mb-2" id="nav-bar">
+            <nav className="font-mono flex gap-10 justify-center mb-3" id="nav-bar">
                 <RouteLink name="ALL TOKENS" route="/" />
                 <RouteLink name="❤️" route="/favourites" />
             </nav>
 
-            {/* direct to main site */}
+            {/* direct to main site
             <a href="https://norebase-v2.moyela.com" className="text-center text-sm text-gray-400 hover:text-gray-600">
                 <p>View Beta Site</p>
-            </a>
+            </a> */}
         </div>
     );
 }
