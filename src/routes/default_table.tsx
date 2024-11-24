@@ -145,15 +145,15 @@ export default function Home() {
         </div>
         {/* footer of the table */}
         <div className="flex flex-row font-mono justify-between">
-          <div className="hidden sm:block pt-1 basis-1/3 font-bold">
+          <div className="hidden sm:block pt-1 basis-1/5 font-bold">
             
             <p className="text-sm">Page {page} of {TOTAL_PAGES}</p>
           </div>
-          <div className="hidden sm:block pt-1 basis-2/5 font-bold text-red-600">
+          <div className="hidden sm:block pt-1 basis-4/9 font-bold text-red-600 ">
             
-            <p className="text-sm">Last updated: {fetchTime}</p>
+            <p className="text-sm mx-auto">Last updated: {fetchTime}</p>
           </div>
-          <div className="flex flex-row gap-7 text-sm nav-bar">
+          <div className="flex flex-row gap-7 text-sm nav-bar    ">
             
             <button className="px-3 py-1 hover:bg-black rounded-xl bg-[#66b179] text-white" onClick={() => previousPage()} disabled={page === 1}>
               ← PREV

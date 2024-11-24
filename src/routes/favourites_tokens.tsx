@@ -75,7 +75,7 @@ export default function FavouriteTokens() {
                       <div className="basis-1/2 flex flex-col gap-3">
                         <div>
                           <p className="font-bold">💵Price</p>
-                          <p><span className="font-bold">$</span>{token.price_usd}</p>
+                          <p><span className="font-bold">$</span><span className="font-bold text-red-600">{token.price_usd}</span></p>
                           </div>  
                         <div>
                           <p className="font-bold">🔄️Total Supply</p>
@@ -99,7 +99,7 @@ export default function FavouriteTokens() {
                         <p>{token.symbol}</p>
                       </div>
                       <div className="basis-1/4">
-                        <p><span className="font-bold">$</span>{token.price_usd}</p>
+                        <p><span className="font-bold">$</span><span className="font-bold text-red-600">{token.price_usd}</span></p>
                       </div>
                       <div className="basis-3/6">
                         <p>{token.tsupply} <span className="font-bold">{token.symbol}</span></p>

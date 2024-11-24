@@ -1,7 +1,7 @@
 import './styles/main.css'
 import AppRouter from './routes/_routes.js';
 import Header from './components/header.js';
-// import Footer from './components/footer';
+import Footer from './components/footer.js';
 
 // root sets the main layout and contains the Header and the Router that renders other views
 export default function Root() {
@@ -14,9 +14,10 @@ export default function Root() {
         </div>
       </div>
 
-      <div className=' pb-5 min-h-max '>
-        <div className="flex flex-col md:max-w-2xl md:min-w-xl mx-auto pt-2">
+      <div className='pb-5 min-h-max '>
+        <div className="flex flex-col md:max-w-2xl md:min-w-xl mx-auto pt-2  gap-9">
           <AppRouter/>
+          <Footer/>
         </div>
       </div>
     </div>

@@ -19,10 +19,10 @@ function RouteLink(props: {name:string, route:string}) {
 export default function Header() {
     return (
         <div className="text-center md:text-left flex flex-col">
-            <div className="flex flex-col md:flex-row-reverse justify-around py-2 md:pt-1 min-w-min">
+            <div className="flex flex-col md:flex-row-reverse justify-around pb-2 min-w-min">
                 
-                <div className="md:pt-1 mx-auto">
-                    <p className="font-mono font-semibold text-2xl md:text-4xl">
+                <div className="mx-auto">
+                    <p className="font-mono font-semibold text-2xl md:text-3xl">
                         Crypto Token List
                     </p>
                 </div>
@@ -32,11 +32,6 @@ export default function Header() {
                 <RouteLink name="ALL TOKENS" route="/" />
                 <RouteLink name="❤️" route="/favourites" />
             </nav>
-
-            {/* direct to main site */}
-            <a href="https://norebase.moyela.com" className="text-center text-sm text-gray-400 hover:text-gray-600">
-                <p>View Main Site</p>
-            </a>
         </div>
     );
 }
