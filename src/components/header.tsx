@@ -32,6 +32,11 @@ export default function Header() {
                 <RouteLink name="ALL TOKENS" route="/" />
                 <RouteLink name="❤️" route="/favourites" />
             </nav>
+
+            {/* direct to main site */}
+            <a href="https://norebase-v2.moyela.com" className="text-center text-sm text-gray-400 hover:text-gray-600">
+                <p>View Beta Site</p>
+            </a>
         </div>
     );
 }
