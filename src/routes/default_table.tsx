@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { toggleLikeToken } from "../storage/tokenLocalStorage";
+import MobileTableView from "../components/mobile_table_view";
+import WebTableView from "../components/web_table_view";
 
 export default function Home() {
     const [tokens, setTokens] = useState([])
@@ -7,7 +8,6 @@ export default function Home() {
     const [start, setStart] = useState(0)
     const [loading, setLoading] = useState(false)
     const [fetchTime, setFetchTime] = useState('')
-    // const [favouriteTokensList, setFavouriteTokensList] = useState("")
 
     const BASE_URL = "https://api.coinlore.net/api/"
     const TOTAL_PAGES = 1219
@@ -57,9 +57,7 @@ export default function Home() {
 
     if (loading === true) {return <h1>Loading...</h1>}
 
-    // const toggleLikeToken = (tokenName:string, tokenId:string) => {
-    //   tokenLocalStorage.toggleLikeToken(tokenName, tokenId)
-    // }
+    let isMobileView = window.innerWidth < 640;
 
     return (
       <div className=' px-1 md:px-0 font-sans tracking-wide bg-green-100 flex flex-col '>
@@ -84,65 +82,12 @@ export default function Home() {
         </div>
 
         <div>
+          {/* render mobile or web table based on the screen size */}
           <ul>
-            {tokens.map((token:any) => {
-              return (
-                <>
-                  {/* // mobile-view -------------------------------------------------------------------------- */}
-                  <li key={token.nameid + ' mobile'} className='border-black border rounded-md flex sm:hidden  flex-col gap-2 bg-slate-100 p-1 mb-2'>  
-                    <div className="flex flex-row justify-between text-sm">
-                      <p className="hidden md:block basis-1/6">{token.rank}</p>
-                      <div className="basis-1/2 flex flex-col gap-3">
-                        <div>
-                          <p className="font-bold">🪙Token</p>
-                          <p><span className="font-bold">{token.rank}</span> {token.name}</p>
-                        </div>
-                        <div>
-                          <p className="font-bold">📶Symbol</p>
-                          <p>({token.symbol})</p>
-                        </div>
-                      </div>
-                      <div className="basis-1/2 flex flex-col gap-3">
-                        <div>
-                          <p className="font-bold">💵Price</p>
-                          <p><span className="font-bold">$</span><span className="font-bold text-red-600">{token.price_usd}</span></p>
-                          </div>  
-                        <div>
-                          <p className="font-bold">🔄️Total Supply</p>
-                          <p>{token.tsupply} <span className="font-bold">{token.symbol}</span></p>
-                        </div>
-                      </div>
-        
-                      <button className="text-[#66b179] font-extrabold" onClick={() => toggleLikeToken(token.id, token.nameid, token.symbol, token.price_usd)}>❤️</button>
-                    </div>
-                  </li>
-                  {/* ---------------------------------------------------------------------------------------- */}
-
-                  {/* // web-view -------------------------------------------------------------------------- */}
-                  <li key={token.nameid + ' web'} className='border-black border rounded-md hidden sm:flex  flex-col gap-2 bg-slate-100 p-1 mb-2'>  
-                    <div className="flex flex-row justify-between text-sm">
-                      <p className="hidden sm:block basis-1/6">{token.rank}</p>
-                      <div className="basis-2/5">
-                        <p >{token.name}</p>
-                      </div>
-                      <div  className="basis-1/6">
-                        <p>{token.symbol}</p>
-                      </div>
-                      <div className="basis-1/4">
-                        <p><span className="font-bold">$</span><span className="font-bold text-red-600">{token.price_usd}</span></p>
-                      </div>
-                      <div className="basis-3/6">
-                        <p>{token.tsupply} <span className="font-bold">{token.symbol}</span></p>
-                      </div>
-                        <button className="text-[#66b179] font-extrabold text-xs hover:text-lg" onClick={() => toggleLikeToken(token.id, token.nameid, token.symbol, token.price_usd)}>❤️</button>
-                    </div>
-                  </li>
-                  {/* ---------------------------------------------------------------------------------------- */}
-                </>
-              )
-            })}   
+            {isMobileView ? <MobileTableView tokenData={tokens} /> : <WebTableView tokenData={tokens} />}
           </ul>
         </div>
+        
         {/* footer of the table */}
         <div className="flex flex-row font-mono justify-between sm:mt-2">
           <div className="hidden sm:block pt-1 basis-1/5 font-bold">
