@@ -22,8 +22,9 @@ export const toggleLikeToken = (tokenId:string, tokenName:string, tokenSymbol:st
             let currentTokenList = JSON.parse(localStorage.getItem('likedTokens') || '{}');
             delete currentTokenList[tokenId];
             localStorage.setItem('likedTokens', JSON.stringify(currentTokenList));
-            // console.log(removedTokenNotifier, localStorage);
             toast.error(removedTokenNotifier)
+            if (localStorage['likedTokens'] === "{}") {localStorage.removeItem('likedTokens');}
+             // console.log(removedTokenNotifier, localStorage);
         } 
         else {
            // if likes exist and the token isn't liked, add it
@@ -42,5 +43,5 @@ export const clearLikedTokens = () => {
     let clearedTokensNotifier = `Removing all liked tokens...`
     localStorage.removeItem('likedTokens');
     toast.info(clearedTokensNotifier)
-    setTimeout(() => {location.reload()}, 2000)  
+    setTimeout(() => {window.location.href = "https://norebase.moyela.com"}, 2000)  
 }
