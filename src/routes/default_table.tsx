@@ -37,7 +37,7 @@ export default function Home() {
           const response = await fetch(`${BASE_URL}tickers/?start=${start}&limit=10`);
           const tokenData = await response.json();
           setTokens(tokenData.data);
-          console.log(tokenData.data)
+          // console.log(tokenData.data)
         } 
         catch (error) {
           console.error('Error fetching tokens:', error);

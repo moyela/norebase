@@ -27,7 +27,7 @@ export default function LikedTokens() {
             const response = await fetch(`${BASE_URL}${favouriteTokensList}`);
             const tokenData = await response.json();
             setTokens(tokenData);
-            console.log(tokenData)
+            // console.log(tokenData)
           } 
           catch (error) {
             console.error('Error fetching tokens:', error);

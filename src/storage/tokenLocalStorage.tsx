@@ -1,11 +1,9 @@
 // this codebase contains the functionality for the favourite token setting and retrieval
 import { toast } from 'react-toastify'; // notify user of changes
 
-
-
-export const toggleLikeToken = (tokenId:string, tokenName:string, tokenSymbol:string, tokenOldPrice:string): undefined => {
-    let addedTokenNotifier = `${tokenName}, ${tokenSymbol} added to liked tokens`
-    let removedTokenNotifier = `${tokenName}, ${tokenSymbol} removed from liked tokens`
+export const toggleLikeToken = (tokenId:string, tokenName:string, tokenSymbol:string, tokenOldPrice:string): any => {
+    let addedTokenNotifier = `${tokenName} (${tokenSymbol}) added to liked tokens`
+    let removedTokenNotifier = `${tokenName} (${tokenSymbol}) removed from liked tokens`
     // check if likes exist yet
     let anyLikesYet = localStorage['likedTokens'] === undefined ? false : true;
 
@@ -24,14 +22,14 @@ export const toggleLikeToken = (tokenId:string, tokenName:string, tokenSymbol:st
             let currentTokenList = JSON.parse(localStorage.getItem('likedTokens') || '{}');
             delete currentTokenList[tokenId];
             localStorage.setItem('likedTokens', JSON.stringify(currentTokenList));
-            console.log(removedTokenNotifier, localStorage);
+            // console.log(removedTokenNotifier, localStorage);
             toast.error(removedTokenNotifier)
         } 
         else {
            // if likes exist and the token isn't liked, add it
             tokenList[tokenId] = {"tokenName": tokenName, "tokenSymbol": tokenSymbol, "tokenOldPrice": tokenOldPrice};
             localStorage.setItem('likedTokens', JSON.stringify(tokenList));
-            console.log(addedTokenNotifier, localStorage);
+            // console.log(addedTokenNotifier, localStorage);
             toast.success(addedTokenNotifier)
         }
     }

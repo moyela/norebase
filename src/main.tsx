@@ -23,15 +23,15 @@ export default function Root() {
           <ToastContainer
             position="bottom-left"
             autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
+            hideProgressBar={true}
+            newestOnTop={true}
             closeOnClick
             rtl={false}
             pauseOnFocusLoss
             draggable
             pauseOnHover
             theme="dark"
-            // transition="Bounce",
+            // transition:"Bounce"
           />
         </div>
       </div>
