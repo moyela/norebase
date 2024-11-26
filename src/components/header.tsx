@@ -22,7 +22,7 @@ export default function Header() {
             <div className="flex flex-col md:flex-row-reverse justify-around pb-2 min-w-min">
                 
                 <div className="mx-auto">
-                    <p className="font-mono font-semibold text-2xl md:text-3xl sm:mt-2">
+                    <p className="font-mono font-semibold text-2xl sm:text-3xl mt-2">
                         Crypto Token List
                     </p>
                 </div>
