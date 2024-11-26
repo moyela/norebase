@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import { tokenLocalStorage } from "../storage/tokenLocalStorage";
+import { toggleLikeToken } from "../storage/tokenLocalStorage";
 
 export default function Home() {
     const [tokens, setTokens] = useState([])
@@ -51,8 +51,7 @@ export default function Home() {
       let date = new Date();
       setFetchTime(`${date.toLocaleTimeString()} | ${date.toLocaleDateString()}`)
       
-      console.log(`loaded page ${page}`)
-      console.log(`listing coins from rank ${start + 1}`)
+      // console.log(`listing coins from rank ${start + 1} to ${start + 11}`)
 
     }, [start,page]);
 
@@ -90,7 +89,7 @@ export default function Home() {
               return (
                 <>
                   {/* // mobile-view -------------------------------------------------------------------------- */}
-                  <li key={token.nameid + ' mobile'} className='border-black border rounded-md flex sm:hidden  flex-col gap-2 bg-slate-100 hover:bg-slate-300 p-1 mb-2'>  
+                  <li key={token.nameid + ' mobile'} className='border-black border rounded-md flex sm:hidden  flex-col gap-2 bg-slate-100 p-1 mb-2'>  
                     <div className="flex flex-row justify-between text-sm">
                       <p className="hidden md:block basis-1/6">{token.rank}</p>
                       <div className="basis-1/2 flex flex-col gap-3">
@@ -114,13 +113,13 @@ export default function Home() {
                         </div>
                       </div>
         
-                      <button className="text-[#66b179] font-extrabold" onClick={() => {}}>❤️</button>
+                      <button className="text-[#66b179] font-extrabold" onClick={() => toggleLikeToken(token.id, token.nameid, token.symbol, token.price_usd)}>❤️</button>
                     </div>
                   </li>
-
+                  {/* ---------------------------------------------------------------------------------------- */}
 
                   {/* // web-view -------------------------------------------------------------------------- */}
-                  <li key={token.nameid + ' web'} className='border-black border rounded-md hidden sm:flex  flex-col gap-2 bg-slate-100 hover:bg-slate-300 p-1 mb-2'>  
+                  <li key={token.nameid + ' web'} className='border-black border rounded-md hidden sm:flex  flex-col gap-2 bg-slate-100 p-1 mb-2'>  
                     <div className="flex flex-row justify-between text-sm">
                       <p className="hidden sm:block basis-1/6">{token.rank}</p>
                       <div className="basis-2/5">
@@ -135,9 +134,10 @@ export default function Home() {
                       <div className="basis-3/6">
                         <p>{token.tsupply} <span className="font-bold">{token.symbol}</span></p>
                       </div>
-                        <button className="text-[#66b179] font-extrabold text-xs hover:text-sm" onClick={() => {}}>❤️</button>
+                        <button className="text-[#66b179] font-extrabold text-xs hover:text-lg" onClick={() => toggleLikeToken(token.id, token.nameid, token.symbol, token.price_usd)}>❤️</button>
                     </div>
                   </li>
+                  {/* ---------------------------------------------------------------------------------------- */}
                 </>
               )
             })}   

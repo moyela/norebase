@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { toggleLikeToken } from "../storage/tokenLocalStorage";
+import { clearLikedTokens } from "../storage/tokenLocalStorage";
 
 export default function LikedTokens() {
     const [tokens, setTokens] = useState([])
@@ -7,35 +9,49 @@ export default function LikedTokens() {
 
     const BASE_URL = "https://api.coinlore.net/api/ticker/?id="
 
-    useEffect(() => {
+    let anyLikesYet = localStorage['likedTokens'] == undefined ? false : true;
 
-      const fetchTokens = async () => {
-        setLoading(true);
-        try {
-          const response = await fetch(`${BASE_URL}90,80,89,47305,121613,126769`);
-          const tokenData = await response.json();
-          setTokens(tokenData);
-          console.log(tokenData)
-        } 
-        catch (error) {
-          console.error('Error fetching tokens:', error);
-        } 
-        finally {
-          setLoading(false);
+    // check if liked tokens exist
+    if (anyLikesYet === false) {return <h1>Please like a token to monitor it here...</h1>}
+    else {
+      let likedTokensList = JSON.parse(localStorage.getItem('likedTokens') || '{}');
+      let likedTokensArray = Object.keys(likedTokensList);;
+      let favouriteTokensList = likedTokensArray.join(',');
+
+          
+      useEffect(() => {
+
+        const fetchTokens = async () => {
+          setLoading(true);
+          try {
+            const response = await fetch(`${BASE_URL}${favouriteTokensList}`);
+            const tokenData = await response.json();
+            setTokens(tokenData);
+            console.log(tokenData)
+          } 
+          catch (error) {
+            console.error('Error fetching tokens:', error);
+          } 
+          finally {
+            setLoading(false);
+          }
         }
-      }
-      
-      fetchTokens();
-      let date = new Date();
-      setFetchTime(`${date.toLocaleTimeString()} | ${date.toLocaleDateString()}`)
-      
-      // console.log(`loaded page ${page}`)
-      // console.log(`listing coins from rank ${start + 1}`)
+        
+        fetchTokens();
+        let date = new Date();
+        setFetchTime(`${date.toLocaleTimeString()} | ${date.toLocaleDateString()}`)
 
-    }, []);
+      }, []);
+
+    }
+    
+    // reload page after adding or removing a liked token
+    const toggleLikeTokenAndReload = (tokenId:string, tokenName:string, tokenSymbol:string, tokenOldPrice:string) => {
+      toggleLikeToken(tokenId, tokenName, tokenSymbol, tokenOldPrice);
+      setTimeout(() => {location.reload()}, 2000);
+    }
 
     if (loading === true) {return <h1>Loading...</h1>}
-
     return (
       <div className=' px-1 md:px-0 font-sans tracking-wide bg-green-100 flex flex-col '>
         <div className="hidden sm:flex flex-row mb-3 font-semibold border-b-2 border-b-black font-mono">
@@ -83,7 +99,7 @@ export default function LikedTokens() {
                         </div>
                       </div>
         
-                      <button className="text-[#66b179] font-extrabold" onClick={() => {}}>💔</button>
+                      <button className="text-[#66b179] font-extrabold" onClick={() => toggleLikeTokenAndReload(token.id, token.nameid, token.symbol, token.price_usd)}>💔</button>
                     </div>
                   </li>
 
@@ -104,7 +120,7 @@ export default function LikedTokens() {
                       <div className="basis-3/6">
                         <p>{token.tsupply} <span className="font-bold">{token.symbol}</span></p>
                       </div>
-                      <button className="text-[#66b179] font-extrabold" onClick={() => {}}>💔</button>
+                      <button className="text-[#66b179] font-extrabold hover:text-lg" onClick={() => toggleLikeTokenAndReload(token.id, token.nameid, token.symbol, token.price_usd)}>💔</button>
                     </div>
                   </li>
                 </>
@@ -117,6 +133,11 @@ export default function LikedTokens() {
           <div className="hidden sm:block pt-1 mx-auto font-bold text-red-600">
             
             <p className="text-sm">Last updated: {fetchTime}</p>
+          </div>
+          <div className="flex flex-row gap-2 text-sm nav-bar">
+            <button className="px-3 py-1 hover:bg-black rounded-md bg-[#66b179] text-white" onClick={() => clearLikedTokens()}>
+              CLEAR ALL
+            </button>
           </div>
         </div>
       </div>

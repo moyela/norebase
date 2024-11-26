@@ -4,6 +4,7 @@
 /.vscode
 /node_modules
 /.pnp
+/dist/assets
 .pnp.js
 
 # testing

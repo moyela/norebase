@@ -29,8 +29,8 @@ export default function Header() {
             </div>
 
             <nav className="font-mono flex gap-10 justify-center mb-3" id="nav-bar">
-                <RouteLink name="ALL TOKENS" route="/" />
-                <RouteLink name="❤️" route="/favourites" />
+                <RouteLink name="ALL TOKENS, RANKED" route="/" />
+                <RouteLink name="❤️ TOKENS" route="/favourites" />
             </nav>
 
             {/* direct to main site

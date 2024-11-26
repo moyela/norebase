@@ -2,6 +2,8 @@ import './styles/main.css'
 import AppRouter from './routes/_routing.js';
 import Header from './components/header.js';
 import Footer from './components/footer.js';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // root sets the main layout and contains the Header and the Router that renders other views
 export default function Root() {
@@ -18,6 +20,19 @@ export default function Root() {
         <div className="flex flex-col md:max-w-2xl md:min-w-xl mx-auto pt-2  gap-9">
           <AppRouter/>
           <Footer/>
+          <ToastContainer
+            position="bottom-left"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+            // transition="Bounce",
+          />
         </div>
       </div>
     </div>

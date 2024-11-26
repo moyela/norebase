@@ -1,4 +1,4 @@
-export default function ErrorPage() {
+export default function PageNotFound() {
 
   return (
     <div className="px-10 py-20 flex flex-col gap-5">
