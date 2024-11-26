@@ -45,11 +45,11 @@ export default function LikedTokens() {
 
     }
     
-    // reload page after adding or removing a liked token
-    const toggleLikeTokenAndReload = (tokenId:string, tokenName:string, tokenSymbol:string, tokenOldPrice:string) => {
-      toggleLikeToken(tokenId, tokenName, tokenSymbol, tokenOldPrice);
-      setTimeout(() => {location.reload()}, 2000);
-    }
+    // // reload page after adding or removing a liked token
+    // const toggleLikeTokenAndReload = (tokenId:string, tokenName:string, tokenSymbol:string, tokenOldPrice:string) => {
+    //   toggleLikeToken(tokenId, tokenName, tokenSymbol, tokenOldPrice);
+    //   setTimeout(() => {location.reload()}, 2000);
+    // }
 
     if (loading === true) {return <h1 className="min-h-screen">Loading...</h1>}
     return (
