@@ -12,7 +12,7 @@ export default function LikedTokens() {
     let anyLikesYet = localStorage['likedTokens'] == undefined ? false : true;
 
     // check if liked tokens exist
-    if (anyLikesYet === false) {return <div className="flex flex-row justify-around"> <h1 className="text-xl pt-10 min-h-screen">Please like a token to monitor it here...</h1></div>}
+    if (anyLikesYet === false) {return <div className="flex flex-row justify-around"> <h1 className="text-xl pt-10 min-h-screen">Please like a token to continue</h1></div>}
     else {
       let likedTokensList = JSON.parse(localStorage.getItem('likedTokens') || '{}');
       let likedTokensArray = Object.keys(likedTokensList);;
