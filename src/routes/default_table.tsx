@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { toggleLikeToken } from "../storage/tokenLocalStorage";
+import { storeCurrentPage, recallCurrentPage, storeCurrentStart, recallCurrentStart } from "../storage/sessionStorage";
+
+
 
 export default function Home() {
     const [tokens, setTokens] = useState([])
-    const [page, setPage] = useState(1)
-    const [start, setStart] = useState(0)
+    const [page, setPage] = useState(recallCurrentPage())
+    const [start, setStart] = useState(recallCurrentStart())
     const [loading, setLoading] = useState(false)
     const [fetchTime, setFetchTime] = useState('')
     // const [favouriteTokensList, setFavouriteTokensList] = useState("")
@@ -14,17 +17,21 @@ export default function Home() {
 
     // nextPage and previousPage change the pages and adjust the api call
     const nextPage = () => {
-      setPage(prevPage => {
+      setPage((prevPage:number) => {
           const newPage = prevPage + 1;
           setStart((newPage - 1) * 10);
+          storeCurrentStart((newPage - 1) * 10) // store the current start in session storage
+          storeCurrentPage(newPage) // store the current page in session storage
           return newPage;
       });
     };
 
     const previousPage = () => {
-        setPage(prevPage => {
+        setPage((prevPage:number) => {
             const newPage = prevPage - 1;
             setStart((newPage - 1) * 10);
+            storeCurrentStart((newPage - 1) * 10) // store the current start in session storage
+            storeCurrentPage(newPage) // store the current page in session storage
             return newPage;
         });
     };

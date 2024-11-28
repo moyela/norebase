@@ -5,9 +5,9 @@ function RouteLink(props: {name:string, route:string}) {
     return (
       <div className="">
         <NavLink 
-        className="text-md hover:text-lime-700 py-1 px-3 rounded-2xl"
+        className="text-md hover:text-lime-700 py-1 px-3 rounded-2xl border border-gray-300"
         to={props.route}
-        title={`Switch to ${props.name}`}>
+        title={`See ${props.name}`}>
 
             {props.name}    
         </NavLink>
@@ -29,8 +29,8 @@ export default function Header() {
             </div>
 
             <nav className="font-mono flex gap-10 text-sm justify-center mb-3" id="nav-bar">
-                <RouteLink name="ALL TOKENS, RANKED" route="/" />
-                <RouteLink name="❤️ TOKENS" route="/favourites" />
+                <RouteLink name="All Ranked By Marketcap" route="/" />
+                <RouteLink name="Liked Tokens ❤️" route="/favourites" />
             </nav>
 
             {/* direct to main site

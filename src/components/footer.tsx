@@ -10,7 +10,7 @@ export default function Footer() {
                 <p>View Stable Site</p>
             </a> */}
             <a href="https://moyela.com" className="text-center text-xs text-gray-500 hover:text-gray-600">
-                <p>Go to moyela.com</p>
+                <p>Go to moyela.com?</p>
             </a>
         </div>
 
