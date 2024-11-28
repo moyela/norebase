@@ -1,37 +1,41 @@
 import { useState, useEffect } from "react";
 import { toggleLikeToken } from "../storage/tokenLocalStorage";
-import { storeCurrentPage, recallCurrentPage, storeCurrentStart, recallCurrentStart } from "../storage/sessionStorage";
-
-
+import { storeSessionStorageState, recallSessionStorageState } from "../storage/sessionStorage";
 
 export default function Home() {
-    const [tokens, setTokens] = useState([])
-    const [page, setPage] = useState(recallCurrentPage())
-    const [start, setStart] = useState(recallCurrentStart())
-    const [loading, setLoading] = useState(false)
-    const [fetchTime, setFetchTime] = useState('')
-    // const [favouriteTokensList, setFavouriteTokensList] = useState("")
-
     const BASE_URL = "https://api.coinlore.net/api/"
     const TOTAL_PAGES = 1219
+    const PAGE_SESSION_STORAGE_KEY = 'currentPage'
+    const START_SESSION_STORAGE_KEY = 'currentStart'
+
+    const [tokens, setTokens] = useState([])
+    const [page, setPage] = useState(recallSessionStorageState(PAGE_SESSION_STORAGE_KEY, 1))
+    const [start, setStart] = useState(recallSessionStorageState(START_SESSION_STORAGE_KEY, 0))
+    const [loading, setLoading] = useState(false)
+    const [fetchTime, setFetchTime] = useState('')
+
+    // generate the start value for the api call based on which page we're on
+    const generateStartValue = (pageValue:number) => (pageValue - 1) * 10
+    
+    // update state for the new page and start values
+    const saveNewPageData = (pageValue:number) => {
+      setStart(generateStartValue(pageValue));
+      storeSessionStorageState(PAGE_SESSION_STORAGE_KEY, pageValue) // store the current page in session storage
+      storeSessionStorageState(START_SESSION_STORAGE_KEY, generateStartValue(pageValue)) // store the current start in session storage
+    }
 
     // nextPage and previousPage change the pages and adjust the api call
     const nextPage = () => {
       setPage((prevPage:number) => {
           const newPage = prevPage + 1;
-          setStart((newPage - 1) * 10);
-          storeCurrentStart((newPage - 1) * 10) // store the current start in session storage
-          storeCurrentPage(newPage) // store the current page in session storage
+          saveNewPageData(newPage)
           return newPage;
       });
     };
-
     const previousPage = () => {
         setPage((prevPage:number) => {
             const newPage = prevPage - 1;
-            setStart((newPage - 1) * 10);
-            storeCurrentStart((newPage - 1) * 10) // store the current start in session storage
-            storeCurrentPage(newPage) // store the current page in session storage
+            saveNewPageData(newPage)
             return newPage;
         });
     };
@@ -57,16 +61,9 @@ export default function Home() {
       fetchTokens();
       let date = new Date();
       setFetchTime(`${date.toLocaleTimeString()} | ${date.toLocaleDateString()}`)
-      
-      // console.log(`listing coins from rank ${start + 1} to ${start + 11}`)
-
     }, [start,page]);
 
     if (loading === true) {return <div className="flex flex-row justify-around"><h1 className="pt-10 min-h-screen text-xl">Loading...</h1></div>}
-
-    // const toggleLikeToken = (tokenName:string, tokenId:string) => {
-    //   tokenLocalStorage.toggleLikeToken(tokenName, tokenId)
-    // }
 
     return (
       <div className='min-h-screen px-1 md:px-0 font-sans tracking-wide bg-green-100 flex flex-col min-w-92 '>
@@ -81,11 +78,9 @@ export default function Home() {
         {/* paginator and fetch-time for mobile */}
         <div className="sm:hidden font-bold flex flex-col justify-between pb-3 px-3">
           <div className="mx-auto">
-              
               <p className="text-sm">Page {page} of {TOTAL_PAGES}</p>
             </div>
           <div className=" text-red-600 mx-auto">
-              
               <p className="text-sm">Last updated: {fetchTime}</p>
           </div>
         </div>
@@ -118,7 +113,6 @@ export default function Home() {
                           <p>{token.tsupply} <span className="font-bold font-mono">{token.symbol}</span></p>
                         </div>
                       </div>
-        
                       <button className="text-[#66b179] font-extrabold" onClick={() => toggleLikeToken(token.id, token.nameid, token.symbol, token.price_usd)}>❤️</button>
                     </div>
                   </li>

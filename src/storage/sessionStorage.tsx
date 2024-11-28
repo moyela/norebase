@@ -1,31 +1,16 @@
-export const recallCurrentPage:any = () => {
+// retrieve session storage data for a given state value
+export const recallSessionStorageState = (stateName: string, defaultResponse:any) => {
+    let memory = sessionStorage.getItem(stateName)
 
-    let memoryPage = sessionStorage.getItem('currentPage')
-
-    if (memoryPage == undefined) {
-        return 1
+    if (memory == undefined) {
+        return defaultResponse
     }
     else {
-        return JSON.parse(memoryPage)
+        return JSON.parse(memory)
     }
 }
 
-export const recallCurrentStart:any = () => {
-
-    let memoryStart = sessionStorage.getItem('currentStart')
-
-    if (memoryStart == undefined) {
-        return 0
-    }
-    else {
-        return JSON.parse(memoryStart)
-    }
-}
-
-export const storeCurrentPage:any = (page:number) => {
-    sessionStorage.setItem('currentPage', JSON.stringify(page))
-}
-
-export const storeCurrentStart:any = (start:number) => {
-    sessionStorage.setItem('currentStart', JSON.stringify(start))
+// save session storage data for a given state value
+export const storeSessionStorageState = (stateName: string, stateData:any) => {
+    sessionStorage.setItem(stateName, JSON.stringify(stateData))
 }
