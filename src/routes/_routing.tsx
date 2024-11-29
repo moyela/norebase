@@ -1,7 +1,7 @@
 import Home from './default_table.js'
 import PageNotFound from './page_not_found.js'
 import { Route , Routes } from "react-router-dom";
-import LikedTokens from './liked_tokens.js';
+import LikedTokens from './liked_tokens_table.js';
 
 export default function Routing() {
   return (
