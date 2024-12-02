@@ -179,11 +179,31 @@ export default function Home() {
               >
                 {'>>>>'}
               </button>
-            </div>
-      
-          </div>
+
           
+            </div>
+            <div className={`sm:hidden font-bold`}>
+              <div className="mx-auto pt-2 flex flex-row gap-4 ">
+                <input 
+                  type="number" 
+                  className="w-16 h-8 text-center border-2 border-black rounded-md" 
+                  // defaultValue={checkCurrentPage()}
+                  value={pageJumpValue} 
+                  onChange={(pageJumpValue) => handlePageJump(pageJumpValue)} 
+                />
+                <button 
+                  className="font-bold px-3 py-1 hover:bg-black rounded-md bg-[#66b179] max-h-8 text-white" 
+                  onClick={() => saveNewPageData(pageJumpValue)}
+                >
+                  GO
+                </button>
+              </div>
+        
+            </div>
+          
+          </div>
         </div>
+        {pageJumpInputError && <div className='mx-auto text-mono text-xs pt-1' style={{ color: 'red' }}>{pageJumpInputError}</div>}        
       </div>
     );
   }
