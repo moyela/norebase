@@ -15,7 +15,6 @@ function RouteLink(props: {name:string, route:string}) {
     )
   }
 
-
 export default function Header() {
     return (
         <div className="text-center md:text-left flex flex-col">
@@ -33,10 +32,6 @@ export default function Header() {
                 <RouteLink name="Liked Tokens ❤️" route="/favourites" />
             </nav>
 
-            {/* direct to main site
-            <a href="https://norebase-v2.moyela.com" className="text-center text-sm text-gray-400 hover:text-gray-600">
-                <p>View Beta Site</p>
-            </a> */}
         </div>
     );
 }
