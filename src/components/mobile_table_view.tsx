@@ -8,7 +8,7 @@ export default function MobileTableView(tableData: any) {
             
                     return (
                         
-                        <li key={token.nameid + ' mobile'} className={`flex sm:hidden flex-col p-1 mx-4 ${index % 2 == 0 ? 'bg-gray-200' : 'bg-white'}`}> 
+                        <li key={token.nameid + ' mobile'} className={`flex sm:hidden flex-col p-1 mx-4 ${index % 2 == 0 ? 'bg-white' : 'bg-slate-200'}`}> 
                             <div className="flex flex-row justify-between text-sm px-4 py-2">
                                 <div className="basis-1/2 flex flex-col gap-3">
                                     <div>

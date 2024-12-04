@@ -8,7 +8,7 @@ export default function WebTableView(tableData: any) {
               
                         return (
                     
-                            <li key={token.nameid + ' web'} className={`hidden sm:flex  flex-col bg-slate-100 px-4 py-2 ${index % 2 == 0 ? 'bg-slate-200' : 'bg-white'}`}>  
+                            <li key={token.nameid + ' web'} className={`hidden sm:flex  flex-col bg-slate-100 px-4 py-2 ${index % 2 == 0 ? 'bg-white' : 'bg-slate-200'}`}>  
                 
                                 <div className="flex flex-row justify-between text-sm">
                                     <p className="hidden sm:block basis-1/6">
