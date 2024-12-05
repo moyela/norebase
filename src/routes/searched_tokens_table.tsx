@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { clearLikedTokens } from "../storage/localStorage";
 import MobileTableView from "../components/mobile_table_view";
 import WebTableView from "../components/web_table_view";
-import { TOTAL_PAGES } from "./default_table";
+// import { TOTAL_PAGES } from "./default_table";
 
 const BASE_URL = "https://api.coinlore.net/api/ticker/?id="
 
@@ -14,7 +14,7 @@ export default function LikedTokens() {
     const [searching, setSearching] = useState(false)
 
 
-    let anyLikesYet = localStorage['likedTokens'] == undefined ? false : true;
+    // let anyLikesYet = localStorage['likedTokens'] == undefined ? false : true;
 
     // check if liked tokens exist
     // if (anyLikesYet === false) {return <div className="flex flex-row justify-around"> <h1 className="text-xl pt-10 min-h-screen">Please like a token to continue</h1></div>}
@@ -27,7 +27,8 @@ export default function LikedTokens() {
       return (
         <div className="flex flex-col justify-around">
           <div className="mx-auto mt-7"><SearchBar/></div>
-          <h1 className="text-xl pt-20 min-h-screen mx-auto">Please search for a token</h1>
+          <h1 className="text-xl pt-20 min-h-screen mx-auto">This feature is still under development :)</h1>
+          {/* <h1 className="text-xl pt-20 min-h-screen mx-auto">Please search for a token here</h1> */}
         </div>
       )} 
     else {
@@ -36,7 +37,7 @@ export default function LikedTokens() {
         const fetchTokens = async () => {
           setLoading(true);
           try {
-            const response = await fetch(`${BASE_URL}${searchForToken()}`);
+            const response = await fetch(`${BASE_URL}${''}`); // second bracket formerly contained searchForToken()
             const tokenData = await response.json();
             setTokens(tokenData);
             // console.log(tokenData)
@@ -52,7 +53,7 @@ export default function LikedTokens() {
         fetchTokens();
         let date = new Date();
         setFetchTime(`${date.toLocaleTimeString()} | ${date.toLocaleDateString()}`)
-
+        setSearching(!searching)
       }, [searching])
 
     }
@@ -108,7 +109,7 @@ export default function LikedTokens() {
 export function SearchBar () {
   const [tokenSearchQuery, setTokenSearchQuery] = useState('')
   const [searchQueryOutcome, setSearchQueryOutcome] = useState<any>([])
-  const [searching, setSearching] = useState(false)
+  // const [searching, setSearching] = useState(false)
 
    // SEARCH FUNCTIONS   =================================================================================
    const changeTokenSearchQuery = (newSearchQuery:any) => {
