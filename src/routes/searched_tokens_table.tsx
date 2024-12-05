@@ -25,9 +25,9 @@ export default function LikedTokens() {
 
     if (searching == false) {
       return (
-        <div className="flex flex-row justify-around">
-          <SearchBar/>
-          <h1 className="text-xl pt-10 min-h-screen">Please search for a token</h1>
+        <div className="flex flex-col justify-around">
+          <div className="mx-auto mt-7"><SearchBar/></div>
+          <h1 className="text-xl pt-20 min-h-screen mx-auto">Please search for a token</h1>
         </div>
       )} 
     else {
@@ -106,7 +106,7 @@ export default function LikedTokens() {
   }
 
 export function SearchBar () {
-  const [tokenSearchQuery, setTokenSearchQuery] = useState('search for tokens')
+  const [tokenSearchQuery, setTokenSearchQuery] = useState('')
   const [searchQueryOutcome, setSearchQueryOutcome] = useState<any>([])
   const [searching, setSearching] = useState(false)
 
@@ -153,7 +153,12 @@ export function SearchBar () {
   return (
     <div className="font-bold font-mono text-sm">
       <div className="flex flex-row gap-4 mx-auto">
-        <input type="textarea" className="text-xs w-64 h-12 text-center border-2 border-black rounded-md" value={tokenSearchQuery} onChange={(e) => changeTokenSearchQuery(e)} />
+        <input 
+        type="textarea" 
+        className="text-xs w-64 h-12 text-center border-2 border-black rounded-md" 
+        placeholder="search for tokens"
+        value={tokenSearchQuery} 
+        onChange={(e) => changeTokenSearchQuery(e)} />
         <button 
         className="font-bold px-3 py-1 hover:bg-black rounded-md bg-[#66b179] max-h-8 text-white" 
         onClick={() => handleSearch()}>
