@@ -28,8 +28,10 @@ export default function Header() {
             </div>
 
             <nav className="font-mono flex gap-5 sm:gap-10 text-sm justify-center mb-3" id="nav-bar">
-                <RouteLink name="All Tokens 🏠" route="/" />
-                <RouteLink name="Liked Tokens ❤️" route="/favourites" />
+                <RouteLink name="🔍" route="/search" />
+                <RouteLink name="All Tokens🏠" route="/" />
+
+                <RouteLink name="Liked ❤️" route="/liked" />
             </nav>
 
         </div>
