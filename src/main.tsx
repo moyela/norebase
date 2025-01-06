@@ -38,3 +38,8 @@ export default function Root() {
     </div>
   )
 }
+
+// pending features to be prioritized
+// - search: make searchtokens component active
+// - darkmode: ad triggerable tags to all colours on components
+// - webhook price refresh: reconfigure fetch function to use webhooks
