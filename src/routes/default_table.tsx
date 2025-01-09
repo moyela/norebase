@@ -250,7 +250,9 @@ export default function Home() {
           
           </div>
         </div>
-        {pageJumpInputError && <div className='mx-auto text-mono text-xs pt-1' style={{ color: 'red' }}>{pageJumpInputError}</div>}        
+        <div className="sm:hidden">
+          {pageJumpInputError && <div className='mx-auto text-mono text-xs pt-1' style={{ color: 'red' }}>{pageJumpInputError}</div>}        
+        </div>
       </div>
     );
   }
