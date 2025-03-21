@@ -22,7 +22,7 @@ export default function Header() {
                 
                 <div className="mx-auto">
                     <p className="font-mono font-semibold text-2xl sm:text-3xl mt-2">
-                        Crypto Token List
+                        Active Web3 Tokens
                     </p>
                 </div>
             </div>
