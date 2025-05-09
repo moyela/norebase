@@ -34,7 +34,7 @@ export default function MobileTableView(tableData: any) {
                                             💵Price
                                         </p>
                                         <p>
-                                            <span className="font-bold">$</span><span className="font-bold text-red-600">{token.price_usd}</span></p>
+                                            <span className="font-bold">$</span><span className="font-bold text-blue    -600">{token.price_usd}</span></p>
                                     </div>  
                                     <div>
                                         <p className="font-bold font-mono text-xs">

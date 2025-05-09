@@ -31,7 +31,7 @@ export default function WebTableView(tableData: any) {
                                             <span className="font-bold">
                                                 $
                                             </span>
-                                            <span className="font-bold text-red-600">
+                                            <span className="font-bold text-blue-600">
                                                 {token.price_usd}
                                             </span>
                                         </p>
